@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { StatusBar } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Loading } from "./src/Components/Loading";
-import { THEME } from "./theme/theme";
+import { THEME } from "./src/theme/theme";
 import {
   useFonts,
   Roboto_400Regular,
