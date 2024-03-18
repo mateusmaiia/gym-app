@@ -1,9 +1,12 @@
 import { VStack, Image, Text, Center, Heading } from "native-base";
 import BackgorundImg from "../assets/background.png";
 import LogoSvg from "../assets/logo.svg";
+import { Input } from "../Components/Input";
+
 export function SignIn() {
   return (
-    <VStack flex={1} bg="gray.700">
+    <VStack flex={1} bg="gray.700" px={10}>
+      {/* Background */}
       <Image
         source={BackgorundImg}
         defaultSource={BackgorundImg}
@@ -29,6 +32,12 @@ export function SignIn() {
           Acesse sua conta
         </Heading>
       </Center>
+      <Input
+        placeholder="E-mail"
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <Input placeholder="Senha" secureTextEntry />
     </VStack>
   );
 }
