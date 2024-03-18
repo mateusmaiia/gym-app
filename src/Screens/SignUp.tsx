@@ -3,8 +3,15 @@ import BackgorundImg from "../assets/background.png";
 import LogoSvg from "../assets/logo.svg";
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function SignUp() {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     // FlexGrow: 1 pra por padrão ocupar todo o tamanho da tela,     junto também com o pb={16} da VStack, para dar mais tamanho a tela.
     <ScrollView
@@ -48,7 +55,12 @@ export function SignUp() {
         <Input placeholder="Confirmar senha" secureTextEntry />
 
         <Button title="Criar e acessar" />
-        <Button mt={24} title="Voltar para o login" variant="outline" />
+        <Button
+          onPress={handleGoBack}
+          mt={24}
+          title="Voltar para o login"
+          variant="outline"
+        />
       </VStack>
     </ScrollView>
   );

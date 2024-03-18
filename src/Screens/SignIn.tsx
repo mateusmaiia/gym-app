@@ -1,10 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
+
+import { AuthNavigationRoutesProps } from "../routes/auth.routes";
+
 import BackgorundImg from "../assets/background.png";
 import LogoSvg from "../assets/logo.svg";
+
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
 
 export function SignIn() {
+  const navigation = useNavigation<AuthNavigationRoutesProps>();
+
+  function handleNewAccount() {
+    navigation.navigate("signUp");
+  }
+
   return (
     // FlexGrow: 1 pra por padrão ocupar todo o tamanho da tela,     junto também com o pb={16} da VStack, para dar mais tamanho a tela.
     <ScrollView
@@ -51,7 +62,11 @@ export function SignIn() {
             Ainda não tem acesso?
           </Text>
         </Center>
-        <Button title="Criar conta" variant="outline" />
+        <Button
+          title="Criar conta"
+          variant="outline"
+          onPress={handleNewAccount}
+        />
       </VStack>
     </ScrollView>
   );
