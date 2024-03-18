@@ -26,6 +26,7 @@ export function SignIn() {
         {/* Background */}
         <Image
           source={BackgorundImg}
+          // para memoizar essa imagem como default e carregar como prioridade
           defaultSource={BackgorundImg}
           alt="Pessoas treinando"
           resizeMode="contain"
