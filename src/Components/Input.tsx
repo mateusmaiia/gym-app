@@ -11,6 +11,7 @@ export function Input({ ...rest }: IInputProps) {
       color="white"
       fontFamily="body"
       mb={4}
+      placeholderTextColor="gray.300"
       {...rest}
     />
   );
