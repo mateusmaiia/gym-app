@@ -72,7 +72,12 @@ export function AppRoutes() {
           ),
         }}
       />
-      <Screen name="exercise" component={Exercise} />
+      <Screen
+        name="exercise"
+        component={Exercise}
+        //Para ele não aparecer como um ícone de navegação.
+        options={{ tabBarButton: () => null }}
+      />
     </Navigator>
   );
 }
