@@ -35,6 +35,10 @@ export function AppRoutes() {
         tabBarShowLabel: false,
         tabBarActiveTintColor: colors.green["500"],
         tabBarInactiveTintColor: colors.gray["200"],
+        tabBarStyle: {
+          backgroundColor: colors.gray["700"],
+          borderTopWidth: 0,
+        },
       }}
     >
       <Screen
