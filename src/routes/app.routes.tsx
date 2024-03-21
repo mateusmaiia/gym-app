@@ -12,6 +12,7 @@ import { Profile } from "../Screens/Profile";
 import { History } from "../Screens/History";
 import { Exercise } from "../Screens/Exercise";
 import { useTheme } from "native-base";
+import { Platform } from "react-native";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -38,6 +39,9 @@ export function AppRoutes() {
         tabBarStyle: {
           backgroundColor: colors.gray["700"],
           borderTopWidth: 0,
+          height: Platform.OS === "android" ? "auto" : 96,
+          paddingTop: sizes[6],
+          paddingBottom: sizes[10],
         },
       }}
     >
