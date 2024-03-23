@@ -1,9 +1,10 @@
-import { Center, Text } from "native-base";
+import { VStack, Text } from "native-base";
+import { ScreenHeader } from "../Components/ScreenHeader";
 
 export function Profile() {
   return (
-    <Center flex={1}>
-      <Text>Home</Text>
-    </Center>
+    <VStack flex={1}>
+      <ScreenHeader title="Perfil" />
+    </VStack>
   );
 }
