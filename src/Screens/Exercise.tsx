@@ -2,8 +2,9 @@ import { Icon, Text, VStack } from "native-base";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { AppNavigationRoutesProps } from "../routes/app.routes";
 export function Exercise() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigationRoutesProps>();
 
   function handleGoBack() {
     navigation.goBack();
