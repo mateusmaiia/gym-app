@@ -50,10 +50,14 @@ export function Profile() {
           </TouchableOpacity>
           <Input bg="gray.600" placeholder="Nome" />
           <Input bg="gray.600" value="mateusssmaia@gmail.com" isDisabled />
-        </Center>
 
-        <VStack mt={12} px={10} pb={9}>
-          <Heading color="gray.200" fontSize="md" mb={2}>
+          <Heading
+            color="gray.200"
+            mt={36}
+            fontSize="md"
+            mb={2}
+            alignSelf="flex-start"
+          >
             Alterar senha
           </Heading>
           <Input bg="gray.600" placeholder="Senha antiga" secureTextEntry />
@@ -63,9 +67,8 @@ export function Profile() {
             placeholder="Confirme a nova senha"
             secureTextEntry
           />
-
           <Button title="Atualizar" mt={4} />
-        </VStack>
+        </Center>
       </ScrollView>
     </VStack>
   );
