@@ -1,8 +1,10 @@
-import { HStack, Heading, Icon, Text, VStack } from "native-base";
+import { HStack, Heading, Icon, Image, Text, VStack } from "native-base";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigationRoutesProps } from "../routes/app.routes";
+
+import BodySvg from "../assets/body.svg";
 export function Exercise() {
   const navigation = useNavigation<AppNavigationRoutesProps>();
 
@@ -25,7 +27,8 @@ export function Exercise() {
           <Heading color="gray.100" fontSize={"lg"}>
             Puxada frontal
           </Heading>
-          <HStack>
+          <HStack alignItems="center">
+            <BodySvg />
             <Text
               color="gray.200"
               ml={2}
