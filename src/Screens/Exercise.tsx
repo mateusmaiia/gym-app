@@ -24,7 +24,7 @@ export function Exercise() {
           mb={8}
           alignItems="center"
         >
-          <Heading color="gray.100" fontSize={"lg"}>
+          <Heading color="gray.100" fontSize={"lg"} flexShrink={1}>
             Puxada frontal
           </Heading>
           <HStack alignItems="center">
