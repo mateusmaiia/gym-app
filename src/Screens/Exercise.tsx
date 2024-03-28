@@ -40,6 +40,19 @@ export function Exercise() {
           </HStack>
         </HStack>
       </VStack>
+      <VStack p={8}>
+        <Image
+          w="full"
+          h={80}
+          source={{
+            uri: "https://www.origym.com.br/midia/remada-unilateral-3.jpg",
+          }}
+          alt="Nome do exercícios"
+          mb={3}
+          resizeMode="cover"
+          rounded="lg"
+        />
+      </VStack>
     </VStack>
   );
 }
