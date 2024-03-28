@@ -5,6 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { AppNavigationRoutesProps } from "../routes/app.routes";
 
 import BodySvg from "../assets/body.svg";
+
+import SeriesSvg from "../assets/series.svg";
+import RepetitionsSvg from "../assets/repetitions.svg";
 export function Exercise() {
   const navigation = useNavigation<AppNavigationRoutesProps>();
 
