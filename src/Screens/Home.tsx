@@ -46,6 +46,7 @@ export function Home() {
           showsHorizontalScrollIndicator={false}
           my={10}
           maxH={10}
+          minH={10}
         />
       </HStack>
       <VStack flex={1} px={8} mb={5}>
