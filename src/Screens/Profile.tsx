@@ -21,31 +21,41 @@ export function Profile() {
   );
 
   async function handleUserPhotoSelect() {
-    //função para abrir/acessar album de fotos do usuário.
-    const photoSelected = await ImagePicker.launchImageLibraryAsync({
-      //tipo de conteudo que quer adicionar da galeria do usuário
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      //qualidade vai de 0 a 1
-      quality: 1,
-      //aspecto da imagem   4x4
-      aspect: [4, 4],
-      // editar a imagem que quer pegar, por exemplo editar
-      allowsEditing: true,
+    setPhotoIsLoading(true);
+    try {
+      //função para abrir/acessar album de fotos do usuário.
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        //tipo de conteudo que quer adicionar da galeria do usuário
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        //qualidade vai de 0 a 1
+        quality: 1,
+        //aspecto da imagem   4x4
+        aspect: [4, 4],
+        // editar a imagem que quer pegar, por exemplo editar
+        allowsEditing: true,
 
-      //a lib foi atualizada e agora pode selecionar mais de uma foto,   no caso, retorna um array
-      //dar um limit de fotos selecionadas
-      selectionLimit: 1,
-    });
-    //dentro dessa const tem um objeto e dentro uma prop chamada uri
-    console.log(photoSelected);
+        //a lib foi atualizada e agora pode selecionar mais de uma foto,   no caso, retorna um array
+        //dar um limit de fotos selecionadas
+        selectionLimit: 1,
+      });
+      //dentro dessa const tem um objeto e dentro uma prop chamada uri
+      console.log(photoSelected);
 
-    //se o usuário cancelou, ele não selecionou uma foto
-    if (photoSelected.canceled) {
-      return;
+      //se o usuário cancelou, ele não selecionou uma foto
+      if (photoSelected.canceled) {
+        return;
+      }
+
+      //verifica se existe uma uri.
+      if (photoSelected.assets[0].uri) {
+        //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
+        setUserPhoto(photoSelected.assets[0].uri);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setPhotoIsLoading(false);
     }
-
-    //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
-    setUserPhoto(photoSelected.assets[0].uri);
   }
 
   const PHOTO_SIZE = 33;
