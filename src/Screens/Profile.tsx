@@ -19,7 +19,16 @@ export function Profile() {
 
   async function handleUserPhotoSelect() {
     //função para abrir/acessar album de fotos do usuário.
-    await ImagePicker.launchImageLibraryAsync();
+    await ImagePicker.launchImageLibraryAsync({
+      //tipo de conteudo que quer adicionar da galeria do usuário
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      //qualidade vai de 0 a 1
+      quality: 1,
+      //aspecto da imagem   4x4
+      aspect: [4, 4],
+      // editar a imagem que quer pegar, por exemplo editar
+      allowsEditing: true,
+    });
   }
 
   const PHOTO_SIZE = 33;
