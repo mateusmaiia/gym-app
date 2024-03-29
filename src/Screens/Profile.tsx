@@ -16,10 +16,13 @@ import { Button } from "../Components/Button";
 import * as ImagePicker from "expo-image-picker";
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState(
+    "https://github.com/mateusmaiia.png"
+  );
 
   async function handleUserPhotoSelect() {
     //função para abrir/acessar album de fotos do usuário.
-    await ImagePicker.launchImageLibraryAsync({
+    const photoSelected = await ImagePicker.launchImageLibraryAsync({
       //tipo de conteudo que quer adicionar da galeria do usuário
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       //qualidade vai de 0 a 1
@@ -28,7 +31,21 @@ export function Profile() {
       aspect: [4, 4],
       // editar a imagem que quer pegar, por exemplo editar
       allowsEditing: true,
+
+      //a lib foi atualizada e agora pode selecionar mais de uma foto,   no caso, retorna um array
+      //dar um limit de fotos selecionadas
+      selectionLimit: 1,
     });
+    //dentro dessa const tem um objeto e dentro uma prop chamada uri
+    console.log(photoSelected);
+
+    //se o usuário cancelou, ele não selecionou uma foto
+    if (photoSelected.canceled) {
+      return;
+    }
+
+    //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
+    setUserPhoto(photoSelected.assets[0].uri);
   }
 
   const PHOTO_SIZE = 33;
@@ -46,7 +63,7 @@ export function Profile() {
             />
           ) : (
             <UserPhoto
-              source={{ uri: "https://github.com/mateusmaiia.png" }}
+              source={{ uri: userPhoto }}
               size={PHOTO_SIZE}
               alt="Foto de usuário"
             />
