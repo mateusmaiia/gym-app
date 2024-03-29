@@ -3,7 +3,6 @@ import {
   Text,
   Center,
   Skeleton,
-  Circle,
   Heading,
   ScrollView,
 } from "native-base";
@@ -14,8 +13,14 @@ import { useState } from "react";
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
 
+import * as ImagePicker from "expo-image-picker";
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
+
+  async function handleUserPhotoSelect() {
+    //função para abrir/acessar album de fotos do usuário.
+    await ImagePicker.launchImageLibraryAsync();
+  }
 
   const PHOTO_SIZE = 33;
   return (
@@ -37,7 +42,7 @@ export function Profile() {
               alt="Foto de usuário"
             />
           )}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUserPhotoSelect}>
             <Text
               color="green.500"
               mt={3}
