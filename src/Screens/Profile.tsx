@@ -5,10 +5,12 @@ import {
   Skeleton,
   Heading,
   ScrollView,
+  //Substitui o Alert
+  useToast,
 } from "native-base";
 import { ScreenHeader } from "../Components/ScreenHeader";
 import { UserPhoto } from "../Components/UserPhoto";
-import { Alert, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
@@ -23,6 +25,8 @@ export function Profile() {
   const [userPhoto, setUserPhoto] = useState(
     "https://github.com/mateusmaiia.png"
   );
+
+  const toast = useToast();
 
   async function handleUserPhotoSelect() {
     setPhotoIsLoading(true);
@@ -58,8 +62,13 @@ export function Profile() {
         );
 
         //Não aceitar foto com mais de 5MB.
-        if (photoInfo.exists && photoInfo.size / 1024 / 1024 > 5) {
-          Alert.alert("Essa imagem é muito grande. Escolha uma de até 5MB.");
+        if (photoInfo.exists && photoInfo.size / 1024 / 1024 > 0.1) {
+          toast.show({
+            title: "Essa imagem é muito grande. Escolha uma de até 5MB.",
+            duration: 3000,
+            placement: "top",
+            bgColor: "red.500",
+          });
         }
 
         //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
