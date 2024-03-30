@@ -8,7 +8,7 @@ import {
 } from "native-base";
 import { ScreenHeader } from "../Components/ScreenHeader";
 import { UserPhoto } from "../Components/UserPhoto";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
@@ -52,10 +52,15 @@ export function Profile() {
 
       //verifica se existe uma uri.
       if (photoSelected.assets[0].uri) {
-        //Buscar informações do arquivo
+        //Busca informações da foto
         const photoInfo = await FileSystem.getInfoAsync(
           photoSelected.assets[0].uri
         );
+
+        //Não aceitar foto com mais de 5MB.
+        if (photoInfo.exists && photoInfo.size / 1024 / 1024 > 5) {
+          Alert.alert("Essa imagem é muito grande. Escolha uma de até 5MB.");
+        }
 
         //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
         setUserPhoto(photoSelected.assets[0].uri);
