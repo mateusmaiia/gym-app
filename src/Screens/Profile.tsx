@@ -12,8 +12,12 @@ import { TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Input } from "../Components/Input";
 import { Button } from "../Components/Button";
-
+//Para selecionar
 import * as ImagePicker from "expo-image-picker";
+
+//Para buscar pelas informações
+import * as FileSystem from "expo-file-system";
+
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
   const [userPhoto, setUserPhoto] = useState(
@@ -48,6 +52,11 @@ export function Profile() {
 
       //verifica se existe uma uri.
       if (photoSelected.assets[0].uri) {
+        //Buscar informações do arquivo
+        const photoInfo = await FileSystem.getInfoAsync(
+          photoSelected.assets[0].uri
+        );
+
         //já quer retorna um um obejeto que dentro tem dois arrays de objeto [assets e canceled], pegamos o primeiro elemento dele "assets".
         setUserPhoto(photoSelected.assets[0].uri);
       }
