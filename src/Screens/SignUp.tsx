@@ -1,38 +1,38 @@
-import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
-import BackgorundImg from "../assets/background.png";
-import LogoSvg from "../assets/logo.svg";
-import { Input } from "../Components/Input";
-import { Button } from "../Components/Button";
-import { useNavigation } from "@react-navigation/native";
+import { VStack, Image, Text, Center, Heading, ScrollView } from 'native-base'
+import BackgorundImg from '../assets/background.png'
+import LogoSvg from '../assets/logo.svg'
+import { Input } from '../Components/Input'
+import { Button } from '../Components/Button'
+import { useNavigation } from '@react-navigation/native'
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form'
 
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup'
 
-import * as yup from "yup";
+import * as yup from 'yup'
 
 const signUpSchema = yup.object({
-  name: yup.string().required("Nome obrigatório"),
-  email: yup.string().email("Email inválido").required("Email obrigatório"),
+  name: yup.string().required('Nome obrigatório'),
+  email: yup.string().email('Email inválido').required('Email obrigatório'),
   password: yup
     .string()
-    .min(8, "A senha deve conter no mínimo 8 caracteres")
-    .required("Senha obrigatória"),
+    .min(8, 'A senha deve conter no mínimo 8 caracteres')
+    .required('Senha obrigatória'),
   password_confirm: yup
     .string()
-    .oneOf([yup.ref("password")], "As senhas devem ser iguais")
-    .required("Confirmação de senha obrigatória"),
-});
+    .oneOf([yup.ref('password')], 'As senhas devem ser iguais')
+    .required('Confirmação de senha obrigatória'),
+})
 
 type FormProps = {
-  name: string;
-  email: string;
-  password: string;
-  password_confirm: string;
-};
+  name: string
+  email: string
+  password: string
+  password_confirm: string
+}
 
 export function SignUp() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const {
     control,
@@ -40,24 +40,32 @@ export function SignUp() {
     formState: { errors },
   } = useForm<FormProps>({
     resolver: yupResolver(signUpSchema),
-  });
+  })
 
   function handleGoBack() {
-    navigation.goBack();
+    navigation.goBack()
   }
 
-  function handleSignUp({
+  async function handleSignUp({
     email,
     name,
     password,
     password_confirm,
   }: FormProps) {
-    console.log({
-      email,
-      name,
-      password,
-      password_confirm,
-    });
+    const response = await fetch('http://192.168.30.66:3333/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    })
+    const data = await response.json()
+    console.log(data)
   }
 
   return (
@@ -85,10 +93,10 @@ export function SignUp() {
 
         <Center>
           <Heading
-            color={"gray.100"}
-            fontFamily={"heading"}
+            color={'gray.100'}
+            fontFamily={'heading'}
             mb={6}
-            fontSize={"xl"}
+            fontSize={'xl'}
           >
             Crie sua conta
           </Heading>
@@ -161,5 +169,5 @@ export function SignUp() {
         />
       </VStack>
     </ScrollView>
-  );
+  )
 }
