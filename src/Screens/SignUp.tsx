@@ -10,6 +10,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 import * as yup from 'yup'
+import { api } from '../Services/api'
 
 const signUpSchema = yup.object({
   name: yup.string().required('Nome obrigatório'),
@@ -52,20 +53,13 @@ export function SignUp() {
     password,
     password_confirm,
   }: FormProps) {
-    const response = await fetch('http://192.168.30.66:3333/users', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
+    const response = await api.post('/users', {
+      email,
+      name,
+      password,
     })
-    const data = await response.json()
-    console.log(data)
+
+    console.log(response.data)
   }
 
   return (
