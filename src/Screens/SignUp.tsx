@@ -53,23 +53,23 @@ export function SignUp() {
     password,
     password_confirm,
   }: FormProps) {
-    const response = await api.post('/users', {
-      email,
-      name,
-      password,
-    })
+    try {
+      const response = await api.post('/users', {
+        email,
+        name,
+        password,
+      })
 
-    console.log(response.data)
+      console.log(response.data)
+    } catch (error) {}
   }
 
   return (
-    // FlexGrow: 1 pra por padrão ocupar todo o tamanho da tela,     junto também com o pb={16} da VStack, para dar mais tamanho a tela.
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
       <VStack flex={1} px={10} pb={16}>
-        {/* Background */}
         <Image
           source={BackgorundImg}
           defaultSource={BackgorundImg}
